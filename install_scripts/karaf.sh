@@ -39,7 +39,8 @@ ln -s "$KARAF_DIR/apache-karaf-$KARAF_VERSION" $KARAF_DIR/karaf
 echo " done"
 
 if [ ! -L "/etc/init.d/karaf-service" ]; then
-    echo "Installing Karaf as a service... "
+    [[ -n "$SERVICED" ]] && echo "Installing Karaf as a service... "
+    [[ -n "$SERVICED" ]] || echo "Installing Karaf... "
     # Run a setup script to add some feature repos and prepare it for running as a service
     $KARAF_DIR/karaf/bin/start
     sleep 60
@@ -47,8 +48,8 @@ if [ ! -L "/etc/init.d/karaf-service" ]; then
     $KARAF_DIR/karaf/bin/stop
 
     # Add it as a Linux service
-    ln -s $KARAF_DIR/karaf/bin/karaf-service /etc/init.d/
-    update-rc.d karaf-service defaults
+    [[ -n "$SERVICED" ]] && ln -s $KARAF_DIR/karaf/bin/karaf-service /etc/init.d/
+    [[ -n "$SERVICED" ]] && update-rc.d karaf-service defaults
     echo " done"
 fi
 
@@ -60,7 +61,9 @@ if ! grep -q "$HOME_DIR/.m2/repository" $KARAF_DIR/karaf/etc/org.ops4j.pax.url.m
 fi
 
 # Start it
-echo "Starting Karaf as a service... "
-service karaf-service start
+[[ -n "$SERVICED" ]] && echo "Starting Karaf as a service... "
+[[ -n "$SERVICED" ]] && service karaf-service start
+[[ -n "$SERVICED" ]] || echo "Starting Karaf... "
+[[ -n "$SERVICED" ]] || $KARAF_DIR/karaf/bin/start
 sleep 60
 echo " done"
