@@ -36,8 +36,8 @@ if [ ! -f "$DOWNLOAD_DIR/$WEBAPP" ]; then
   echo " done"
 fi
 
-cp "$DOWNLOAD_DIR/$WEBAPP" $TOMCAT_WEBAPPS/fcrepo.war
-chown $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_WEBAPPS/fcrepo.war
+cp "$DOWNLOAD_DIR/$WEBAPP" $WEBAPPS_DIR/fcrepo.war
+chown $TOMCAT_USER:$TOMCAT_GROUP $WEBAPPS_DIR/fcrepo.war
 
 AUDIT_LOCATION_ARG="fcrepo.audit.container"
 if [ "${FEDORA_AUDIT}" == "true" ] && ! grep -q "${AUDIT_LOCATION_ARG}" $TOMCAT_ENV ; then
