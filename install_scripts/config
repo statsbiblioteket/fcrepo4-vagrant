@@ -18,28 +18,30 @@ FEDORA_TAG=4.3.1-SNAPSHOT
 FEDORA_AUTH=false
 FEDORA_AUDIT=true
 FEDORA_AUDIT_LOCATION=/audit
-FEDORA_DATA=/var/lib/tomcat7/fcrepo4-data
+FEDORA_DATA=/var/lib/tomcat8/fcrepo4-data
 
 
 FUSEKI_VERSION=2.3.0
 FUSEKI_BASE=/etc/fuseki
-FUSEKI_DEPLOY=/var/lib/tomcat7/webapps
+FUSEKI_DEPLOY=/var/lib/tomcat8/webapps
 
-TOMCAT_LOGS=/var/lib/tomcat7
-TOMCAT_LIBS=/usr/share/tomcat7/lib/
-WEBAPPS_DIR=/var/lib/tomcat7/webapps
-TOMCAT_CONF=/etc/tomcat7
+TOMCAT_LOGS=/var/lib/tomcat8
+TOMCAT_LIBS=/usr/share/tomcat8/lib/
+WEBAPPS_DIR=/var/lib/tomcat8/webapps
+TOMCAT_CONF=/etc/tomcat8
 
 SOLR_VERSION=4.10.3
-SOLR_HOME=/var/lib/tomcat7/solr
+SOLR_HOME=/var/lib/tomcat8/solr
 
 KARAF_VERSION=4.0.1
 KARAF_DIR=/opt
 
-TOMCAT_USER=tomcat7
-TOMCAT_GROUP=tomcat7
+TOMCAT_USER=tomcat8
+TOMCAT_GROUP=tomcat8
 
-TOMCAT_CONTROLLER="service tomcat7"
-TOMCAT_ENV=/etc/default/tomcat7
+TOMCAT_CONTROLLER="service tomcat8"
+TOMCAT_ENV=/etc/default/tomcat8
 
 JAVA8_HOME=/usr/lib/jvm/java-8-oracle
+
+#SERVICED=YES

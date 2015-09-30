@@ -9,7 +9,7 @@ if [ -f "$SHARED_DIR/install_scripts/config" ]; then
 fi
 
 # Tomcat
-apt-get -y install tomcat7 tomcat7-admin
+apt-get -y install tomcat8 tomcat8-admin
 usermod -a -G $TOMCAT_GROUP vagrant
 
 if ! grep -q "role rolename=\"fedoraAdmin\"" $TOMCAT_CONF/tomcat-users.xml ; then
