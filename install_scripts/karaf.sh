@@ -18,44 +18,44 @@ if [ ! -f "$DOWNLOAD_DIR/apache-karaf-$KARAF_VERSION.tar.gz" ]; then
   echo " done"
 fi
 
-if [ ! -d "/opt/apache-karaf-$KARAF_VERSION" ]; then
+if [ ! -d "$KARAF_DIR/apache-karaf-$KARAF_VERSION" ]; then
     if [ ! -d "$HOME_DIR/apache-karaf-$KARAF_VERSION" ]; then
         echo -n "Extracting Apache Karaf..."
         tar zxf "$DOWNLOAD_DIR/apache-karaf-$KARAF_VERSION.tar.gz"
         echo " done"
     fi
-    if [ ! -d "/opt/apache-karaf-$KARAF_VERSION" ]; then
+    if [ ! -d "$KARAF_DIR/apache-karaf-$KARAF_VERSION" ]; then
         echo "Deploying Apache Karaf... "
-        mv "$HOME_DIR/apache-karaf-$KARAF_VERSION" /opt
+        mv "$HOME_DIR/apache-karaf-$KARAF_VERSION" $KARAF_DIR
         echo " done"
     fi
 fi
 
-if [ -L "/opt/karaf" ]; then
-    rm /opt/karaf
+if [ -L "$KARAF_DIR/karaf" ]; then
+    rm $KARAF_DIR/karaf
 fi
 echo "Symlinking Apache Karaf... "
-ln -s "/opt/apache-karaf-$KARAF_VERSION" /opt/karaf 
+ln -s "$KARAF_DIR/apache-karaf-$KARAF_VERSION" $KARAF_DIR/karaf
 echo " done"
 
 if [ ! -L "/etc/init.d/karaf-service" ]; then
     echo "Installing Karaf as a service... "
     # Run a setup script to add some feature repos and prepare it for running as a service
-    /opt/karaf/bin/start
+    $KARAF_DIR/karaf/bin/start
     sleep 60
-    /opt/karaf/bin/client < $SHARED_DIR/install_scripts/karaf_service.script
-    /opt/karaf/bin/stop
+    $KARAF_DIR/karaf/bin/client < $SHARED_DIR/install_scripts/karaf_service.script
+    $KARAF_DIR/karaf/bin/stop
 
     # Add it as a Linux service
-    ln -s /opt/karaf/bin/karaf-service /etc/init.d/
+    ln -s $KARAF_DIR/karaf/bin/karaf-service /etc/init.d/
     update-rc.d karaf-service defaults
     echo " done"
 fi
 
 # Add the vagrant user's maven repository
-if ! grep -q "$HOME_DIR/.m2/repository" /opt/karaf/etc/org.ops4j.pax.url.mvn.cfg ; then
-    echo "Adding vagrant user's Maven repository... "
-    sed -i "s|#org.ops4j.pax.url.mvn.localRepository=|org.ops4j.pax.url.mvn.localRepository=$HOME_DIR/.m2/repository|" /opt/karaf/etc/org.ops4j.pax.url.mvn.cfg
+if ! grep -q "$HOME_DIR/.m2/repository" $KARAF_DIR/karaf/etc/org.ops4j.pax.url.mvn.cfg ; then
+    echo "Adding  user's Maven repository... "
+    sed -i "s|#org.ops4j.pax.url.mvn.localRepository=|org.ops4j.pax.url.mvn.localRepository=$HOME_DIR/.m2/repository|" $KARAF_DIR/karaf/etc/org.ops4j.pax.url.mvn.cfg
     echo " done"
 fi
 

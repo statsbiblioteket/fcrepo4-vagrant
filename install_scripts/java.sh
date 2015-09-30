@@ -2,6 +2,12 @@
 # Java
 ###
 
+SHARED_DIR=$1
+
+if [ -f "$SHARED_DIR/install_scripts/config" ]; then
+  . $SHARED_DIR/install_scripts/config
+fi
+
 # Java
 if which java >/dev/null; then
   echo "skip java 8 installation"

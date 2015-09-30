@@ -26,9 +26,9 @@ fi
 
 cd $HOME_DIR
 
-mkdir /var/lib/tomcat7/fcrepo4-data
-chown tomcat7:tomcat7 /var/lib/tomcat7/fcrepo4-data
-chmod g-w /var/lib/tomcat7/fcrepo4-data
+mkdir -p $FEDORA_DATA
+chown $TOMCAT_USER:$TOMCAT_GROUP $FEDORA_DATA
+chmod g-w $FEDORA_DATA
 
 if [ ! -f "$DOWNLOAD_DIR/$WEBAPP" ]; then
   echo -n "Downloading Fedora 4... $RELEASES/$WEBAPP"
@@ -36,13 +36,13 @@ if [ ! -f "$DOWNLOAD_DIR/$WEBAPP" ]; then
   echo " done"
 fi
 
-cp "$DOWNLOAD_DIR/$WEBAPP" /var/lib/tomcat7/webapps/fcrepo.war
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/fcrepo.war
+cp "$DOWNLOAD_DIR/$WEBAPP" $TOMCAT_WEBAPPS/fcrepo.war
+chown $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_WEBAPPS/fcrepo.war
 
 AUDIT_LOCATION_ARG="fcrepo.audit.container"
-if [ "${FEDORA_AUDIT}" == "true" ] && ! grep -q "${AUDIT_LOCATION_ARG}" /etc/default/tomcat7 ; then
-  echo $'\n' >>  /etc/default/tomcat7;
-  echo "CATALINA_OPTS=\"\${CATALINA_OPTS} -Dfcrepo.audit.container=${FEDORA_AUDIT_LOCATION}\"" >> /etc/default/tomcat7;
+if [ "${FEDORA_AUDIT}" == "true" ] && ! grep -q "${AUDIT_LOCATION_ARG}" $TOMCAT_ENV ; then
+  echo $'\n' >>  $TOMCAT_ENV;
+  echo "CATALINA_OPTS=\"\${CATALINA_OPTS} -Dfcrepo.audit.container=${FEDORA_AUDIT_LOCATION}\"" >> $TOMCAT_ENV;
 fi 
 
-service tomcat7 restart
+$TOMCAT_CONTROLLER restart

@@ -8,7 +8,7 @@ if [ -f "$SHARED_DIR/install_scripts/config" ]; then
 fi
 
 if [ ! -d $SOLR_HOME ]; then
-  mkdir $SOLR_HOME
+  mkdir -p $SOLR_HOME
 fi
 
 if [ ! -f "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" ]; then
@@ -21,8 +21,8 @@ cd /tmp
 cp "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" /tmp
 echo "Extracting Solr"
 tar -xzf solr-"$SOLR_VERSION".tgz
-cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war /var/lib/tomcat7/webapps/solr.war
-chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/solr.war
+cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war $WEPAPPS_DIR/solr.war
+chown $TOMCAT_USER:$TOMCAT_GROUP $WEPAPPS_DIR/solr.war
 
 if [ ! -f "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" ]; then
   echo -n "Downloading commons-logging..."
@@ -30,20 +30,20 @@ if [ ! -f "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" ]; then
   echo " done"
 fi
 
-cp "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" /usr/share/tomcat7/lib
+cp "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" $TOMCAT_LIBS
 
-cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/slf4j* /usr/share/tomcat7/lib
-cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/log4j* /usr/share/tomcat7/lib
+cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/slf4j* $TOMCAT_LIBS
+cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/log4j* $TOMCAT_LIBS
 
-chown -hR tomcat7:tomcat7 /usr/share/tomcat7/lib
+chown -hR $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_LIBS
 
 cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
 
 cp $SHARED_DIR/config/schema.xml $SOLR_HOME/collection1/conf
 
-chown -hR tomcat7:tomcat7 $SOLR_HOME
+chown -hR $TOMCAT_USER:$TOMCAT_GROUP $SOLR_HOME
 
-touch /var/lib/tomcat7/velocity.log
-chown tomcat7:tomcat7 /var/lib/tomcat7/velocity.log
+touch $TOMCAT_LOGS/velocity.log
+chown $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_LOGS/velocity.log
 
-service tomcat7 restart
+$TOMCAT_CONTROLLER restart
