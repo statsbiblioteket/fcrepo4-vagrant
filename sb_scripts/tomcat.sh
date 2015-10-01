@@ -22,7 +22,7 @@ if ! grep -q "role rolename=\"fedoraAdmin\"" $TOMCAT_CONF/tomcat-users.xml ; the
   $i<role rolename="manager-gui"/>
   $i<user username="testuser" password="password1" roles="fedoraUser"/>
   $i<user username="adminuser" password="password2" roles="fedoraUser"/>
-  $i<user username="fedoraAdmin" password="secret3" roles="fedoraAdmin"/>
+  $i<user username="fedoraAdmin" password="fedoraAdminPass" roles="fedoraAdmin"/>
   $i<user username="fedora4" password="fedora4" roles="manager-gui"/>' $TOMCAT_CONF/tomcat-users.xml
 fi
 
