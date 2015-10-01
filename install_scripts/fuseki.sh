@@ -28,4 +28,5 @@ $TOMCAT_CONTROLLER restart
 sleep 20
 cp $SHARED_DIR/config/shiro.ini $FUSEKI_BASE
 cp $SHARED_DIR/config/test.ttl $FUSEKI_BASE/configuration
+sed -i "s|#FUSEKI_BASE#|$FUSEKI_BASE|g"  $FUSEKI_BASE/configuration/test.ttl
 $TOMCAT_CONTROLLER restart
