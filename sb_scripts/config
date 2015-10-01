@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# Contain Environment variables for installs
+#
+
+HOME_DIR="/home/dims"
+
+SHARED_DIR="/home/dims"
+
+DOWNLOAD_DIR="$SHARED_DIR/downloads"
+if [ ! -d $DOWNLOAD_DIR ]; then
+  mkdir $DOWNLOAD_DIR
+fi
+
+FEDORA_VERSION=4.3.0
+FEDORA_TAG=4.3.0
+# true to enable auth, false to disable it
+FEDORA_AUTH=false
+FEDORA_AUDIT=true
+FEDORA_AUDIT_LOCATION=$HOME/audit
+FEDORA_DATA=$HOME_DIR/fcrepo4-data
+
+TOMCAT_HOME=$HOME/tomcat80
+TOMCAT_LOGS=$TOMCAT_HOME/logs
+TOMCAT_LIBS=$TOMCAT_HOME/lib
+WEBAPPS_DIR=$TOMCAT_HOME/webapps
+TOMCAT_CONF=$TOMCAT_HOME/conf
+TOMCAT_RESTART="tomcat-init.sh stop; sleep 20; tomcat-init.sh status | grep pids | xargs -r | tomcat-init.sh kill; tomcat-init.sh start"
+TOMCAT_ENV=$TOMCAT_HOME/bin/setenv.sh
+
+FUSEKI_VERSION=2.3.0
+FUSEKI_BASE=$HOME/fuseki
+FUSEKI_DEPLOY=$WEBAPPS_DIR
+
+
+SOLR_VERSION=4.10.3
+SOLR_HOME=$HOME/solr
+
+KARAF_VERSION=4.0.1
+KARAF_DIR=$HOME_DIR
+
+TOMCAT_USER=dims
+TOMCAT_GROUP=dims
+
+JAVA8_HOME=/usr/java/java-1.8.0-oracle-1.8.0.60.x86_64
+
+
+#SERVICED=YES
