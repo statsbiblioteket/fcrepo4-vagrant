@@ -39,7 +39,8 @@ chown -hR $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_LIBS
 
 cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
 
-cp $SHARED_DIR/config/schema.xml $SOLR_HOME/collection1/conf
+rm -r $SOLR_HOME/collection1
+cp -r $SHARED_DIR/config/solr/* $SOLR_HOME/
 
 chown -hR $TOMCAT_USER:$TOMCAT_GROUP $SOLR_HOME
 
