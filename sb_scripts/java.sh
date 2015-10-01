@@ -13,9 +13,9 @@ if which java >/dev/null; then
   echo "skip java 8 installation"
 else
   echo "java 8 installation"
-  yum -y install java-1.8.0-openjdk-devel.x86_64
+  sudo yum -y install java-1.8.0-openjdk-devel.x86_64
 fi
 
 # Maven
-yum -y install maven
+sudo yum -y install maven
 

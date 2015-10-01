@@ -19,7 +19,7 @@ cd $HOME_DIR
 # Build tools
 #apt-get -y install build-essential
 
-sudo yum -y install curl wget maven
+sudo yum -y install curl wget
 
 
 # More helpful packages
