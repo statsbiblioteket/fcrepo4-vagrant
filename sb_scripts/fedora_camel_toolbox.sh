@@ -14,4 +14,4 @@ cd $HOME_DIR
 
 $KARAF_DIR/karaf/bin/client < "$SHARED_DIR/sb_scripts/fedora_camel_toolbox.script"
 
-sed -i 's|solr.baseUrl=localhost:8983/solr/collection1|solr.baseUrl=localhost:8080/solr/collection1|' $KARAF_DIR/karaf/etc/org.fcrepo.camel.indexing.solr.cfg
+sed -i 's|solr.baseUrl=localhost:8983/solr/collection1|solr.baseUrl=localhost:8080/solr/development-core|' $KARAF_DIR/karaf/etc/org.fcrepo.camel.indexing.solr.cfg
