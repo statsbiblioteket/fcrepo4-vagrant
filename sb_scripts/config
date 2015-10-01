@@ -25,7 +25,7 @@ TOMCAT_LOGS=$TOMCAT_HOME/logs
 TOMCAT_LIBS=$TOMCAT_HOME/lib
 WEBAPPS_DIR=$TOMCAT_HOME/webapps
 TOMCAT_CONF=$TOMCAT_HOME/conf
-TOMCAT_RESTART="tomcat-init.sh stop; sleep 20; tomcat-init.sh status | grep pids | xargs -r | tomcat-init.sh kill; tomcat-init.sh start"
+TOMCAT_RESTART="tomcat-init.sh stop; sleep 10; tomcat-init.sh status | grep pids | xargs -r | tomcat-init.sh kill; tomcat-init.sh start; sleep 5"
 TOMCAT_ENV=$TOMCAT_HOME/bin/setenv.sh
 
 FUSEKI_VERSION=2.3.0
