@@ -30,6 +30,5 @@
   -->
   <cores adminPath="/admin/cores" defaultCoreName="development">
     <core name="development" instanceDir="development-core" />
-    <core name="test" instanceDir="test-core" />
   </cores>
 </solr>
