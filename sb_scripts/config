@@ -1,16 +1,16 @@
-#!/bin/sh
 #
 # Contain Environment variables for installs
 #
 
 HOME_DIR="/home/dims"
+DIST_DIR="dist"
 
 SHARED_DIR="/home/dims"
 
 DOWNLOAD_DIR="$SHARED_DIR/downloads"
-if [ ! -d $DOWNLOAD_DIR ]; then
-  mkdir $DOWNLOAD_DIR
-fi
+#if [ ! -d $DOWNLOAD_DIR ]; then
+#  mkdir $DOWNLOAD_DIR
+#fi
 
 FEDORA_VERSION=4.3.0
 FEDORA_TAG=4.3.0

@@ -22,7 +22,7 @@ cp "$DOWNLOAD_DIR/solr-$SOLR_VERSION.tgz" /tmp
 echo "Extracting Solr"
 tar -xzf solr-"$SOLR_VERSION".tgz
 cp -v /tmp/solr-"$SOLR_VERSION"/dist/solr-"$SOLR_VERSION".war $WEBAPPS_DIR/solr.war
-chown $TOMCAT_USER:$TOMCAT_GROUP $WEBAPPS_DIR/solr.war
+#chown $TOMCAT_USER:$TOMCAT_GROUP $WEBAPPS_DIR/solr.war
 
 if [ ! -f "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" ]; then
   echo -n "Downloading commons-logging..."
@@ -35,14 +35,14 @@ cp "$DOWNLOAD_DIR/commons-logging-1.1.2.jar" $TOMCAT_LIBS
 cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/slf4j* $TOMCAT_LIBS
 cp /tmp/solr-"$SOLR_VERSION"/example/lib/ext/log4j* $TOMCAT_LIBS
 
-chown -hR $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_LIBS
+#chown -hR $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_LIBS
 
 cp -Rv /tmp/solr-"$SOLR_VERSION"/example/solr/* $SOLR_HOME
 
 rm -r $SOLR_HOME/collection1
 cp -r $SHARED_DIR/config/solr/* $SOLR_HOME/
 
-chown -hR $TOMCAT_USER:$TOMCAT_GROUP $SOLR_HOME
+#chown -hR $TOMCAT_USER:$TOMCAT_GROUP $SOLR_HOME
 
 #touch $TOMCAT_LOGS/velocity.log
 #chown $TOMCAT_USER:$TOMCAT_GROUP $TOMCAT_LOGS/velocity.log

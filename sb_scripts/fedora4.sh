@@ -27,7 +27,7 @@ fi
 cd $HOME_DIR
 
 mkdir -p $FEDORA_DATA
-chown $TOMCAT_USER:$TOMCAT_GROUP $FEDORA_DATA
+#chown $TOMCAT_USER:$TOMCAT_GROUP $FEDORA_DATA
 chmod g-w $FEDORA_DATA
 
 if [ ! -f "$DOWNLOAD_DIR/$WEBAPP" ]; then
@@ -37,7 +37,7 @@ if [ ! -f "$DOWNLOAD_DIR/$WEBAPP" ]; then
 fi
 
 cp "$DOWNLOAD_DIR/$WEBAPP" $WEBAPPS_DIR/fcrepo.war
-chown $TOMCAT_USER:$TOMCAT_GROUP $WEBAPPS_DIR/fcrepo.war
+#chown $TOMCAT_USER:$TOMCAT_GROUP $WEBAPPS_DIR/fcrepo.war
 
 AUDIT_LOCATION_ARG="fcrepo.audit.container"
 if [ "${FEDORA_AUDIT}" == "true" ] && ! grep -q "${AUDIT_LOCATION_ARG}" $TOMCAT_ENV ; then

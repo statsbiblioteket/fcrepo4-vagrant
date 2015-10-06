@@ -8,7 +8,7 @@ fi
 
 if [ ! -d $FUSEKI_BASE ]; then
   mkdir -p $FUSEKI_BASE/configuration
-  chown -hR $TOMCAT_USER:$TOMCAT_GROUP $FUSEKI_BASE
+#  chown -hR $TOMCAT_USER:$TOMCAT_GROUP $FUSEKI_BASE
 fi
 
 if [ ! -f "$DOWNLOAD_DIR/apache-jena-fuseki-$FUSEKI_VERSION-distribution.tar.gz" ]; then
@@ -22,7 +22,7 @@ cp "$DOWNLOAD_DIR/apache-jena-fuseki-$FUSEKI_VERSION-distribution.tar.gz" /tmp
 tar -xzvf apache-jena-fuseki-"$FUSEKI_VERSION"-distribution.tar.gz
 cd apache-jena-fuseki-"$FUSEKI_VERSION"
 mv -v fuseki.war $FUSEKI_DEPLOY
-chown -hR $TOMCAT_USER:$TOMCAT_GROUP $FUSEKI_DEPLOY/fuseki.war
+#chown -hR $TOMCAT_USER:$TOMCAT_GROUP $FUSEKI_DEPLOY/fuseki.war
 
 if ! grep -q "$FUSEKI_BASE" $TOMCAT_ENV ; then
   echo "export FUSEKI_BASE=$FUSEKI_BASE" >> $TOMCAT_ENV
