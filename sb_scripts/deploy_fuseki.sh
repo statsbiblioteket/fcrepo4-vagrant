@@ -10,8 +10,14 @@ then
         exit 1
 fi
 source config
+SHIRO=$(readlink -f shiro.ini)
+TEST_TTL=$(readlink -f )
 
 mkdir -p $FUSEKI_DIR
+
+if ! grep -q "$FUSEKI_DIR" $TOMCAT_ENV ; then
+  echo "export FUSEKI_BASE=$FUSEKI_DIR" >> $TOMCAT_ENV
+fi
 
 cd $DIST_DIR
 tar xf apache-jena-fuseki*
