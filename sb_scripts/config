@@ -3,7 +3,9 @@
 #
 
 HOME_DIR="/home/dims"
-DIST_DIR="dist"
+
+#Directory to download binaries used for setup to
+DIST_DIR="$HOME/dist"
 
 SHARED_DIR="/home/dims"
 
@@ -37,7 +39,7 @@ SOLR_VERSION=4.10.3
 SOLR_HOME=$HOME/solr
 
 KARAF_VERSION=4.0.1
-KARAF_DIR=$HOME_DIR
+KARAF_DIR=$HOME/karaf
 
 TOMCAT_USER=dims
 TOMCAT_GROUP=dims

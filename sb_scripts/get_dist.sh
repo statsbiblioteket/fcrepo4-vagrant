@@ -10,8 +10,6 @@ then
 fi
 source config
 
-DIST_DIR=$HOME/dist
-
 mkdir -p $DIST_DIR
 cd $DIST_DIR
 
