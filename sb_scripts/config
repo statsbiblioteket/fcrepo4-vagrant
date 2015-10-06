@@ -31,6 +31,7 @@ TOMCAT_RESTART="tomcat-init.sh stop; sleep 10; tomcat-init.sh status | grep pids
 TOMCAT_ENV=$TOMCAT_HOME/bin/setenv.sh
 
 FUSEKI_VERSION=2.3.0
+FUSEKI_DIR=$HOME/services/fuseki
 FUSEKI_BASE=$HOME/fuseki
 FUSEKI_DEPLOY=$WEBAPPS_DIR
 
